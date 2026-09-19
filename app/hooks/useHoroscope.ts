@@ -11,7 +11,7 @@ export default function useHoroscope() {
     setName(info.name);
 
     try {
-      const res = await fetch("/api/horoscope", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/horoscope`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ dob: info.dob }),
