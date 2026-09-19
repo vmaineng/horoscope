@@ -47,28 +47,38 @@ export default function HoroscopeForm({ onSubmit }: HoroscopeFormProps) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="max-w-sm mx-auto">
+      <form onSubmit={handleSubmit} className="mystic-card space-y-5">
         <div>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name" className="block text-sm text-mist mb-1">
+            Name:
+          </label>
           <input
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="w-full"
           />
         </div>
         <div>
-          <label htmlFor="dob">Date of Birth:</label>
+          <label htmlFor="dob" className="block text-sm text-mist mb-1">
+            Date of Birth:
+          </label>
           <input
             type="date"
             id="dob"
             value={dob}
             onChange={(e) => setDob(e.target.value)}
+            className="w-full"
           />
         </div>
-        {error && <p role="alert">{error}</p>}
-        <button className="border border-2" type="submit">
+        {error && (
+          <p role="alert" className="block text-sm text-mist mb-1">
+            {error}
+          </p>
+        )}
+        <button className="mystic-button w-full" type="submit">
           Submit
         </button>
       </form>

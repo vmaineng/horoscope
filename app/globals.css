@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-midnight: #1a1033;
+  --color-twilight: #2d1b4e;
+  --color-amethyst: #6b46a3;
+  --color-gold: #d4af37;
+  --color-rose-gold: #e0a899;
+  --color-starlight: #f5f0ff;
+  --color-mist: #b8a9d9;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(ellipse at top, var(--color-twilight), var(--color-midnight));
+  color: var(--color-starlight);
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* subtle starfield */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 60px 70px, white, transparent),
+    radial-gradient(1px 1px at 90px 40px, white, transparent),
+    radial-gradient(1px 1px at 130px 80px, white, transparent),
+    radial-gradient(2px 2px at 160px 20px, white, transparent);
+  background-size: 200px 200px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--color-gold);
+  letter-spacing: 0.02em;
+}
+
+/* mystical card look, e.g. for HoroscopeOutput */
+.mystic-card {
+  background: rgba(45, 27, 78, 0.6);
+  border: 1px solid var(--color-amethyst);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(107, 70, 163, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+/* glowing button, e.g. submit */
+.mystic-button {
+  background: linear-gradient(135deg, var(--color-amethyst), var(--color-rose-gold));
+  color: var(--color-starlight);
+  border-radius: 999px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.mystic-button:hover {
+  box-shadow: 0 0 25px var(--color-gold);
+  transform: translateY(-2px);
+}
+
+input[type="date"], input[type="text"] {
+  background: rgba(245, 240, 255, 0.08);
+  border: 1px solid var(--color-mist);
+  border-radius: 0.75rem;
+  padding: 0.6rem 1rem;
+  color: var(--color-starlight);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
 }

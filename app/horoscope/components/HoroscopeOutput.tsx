@@ -14,12 +14,13 @@ export default function HoroscopeOutput({
   message,
 }: HoroscopeOutputProps) {
   return (
-    <div>
-      <h2>Horoscope Output</h2>
-      <p>
-        {name}, here&apos;s your {sign} horoscope for {today_date}:
+    <div className="max-w-sm mx-auto mystic-card">
+      <p className="font-display text-gold text-lg mb-2">
+        {sign} &middot; {today_date}
       </p>
-      <p>{message}</p>
+      <p className="text-starlight text-sm leading-relaxed">
+        {name}, {message}
+      </p>
     </div>
   );
 }
