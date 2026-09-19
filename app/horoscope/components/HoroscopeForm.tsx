@@ -1,16 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { name, dob } from "../../types";
 
-export default function HoroscopeForm() {
+type HoroscopeFormProps = {
+  onSubmit: (dob: string) => void;
+};
+
+export default function HoroscopeForm({ onSubmit }: HoroscopeFormProps) {
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Name:", name);
-    console.log("Date of Birth:", dob);
+    if (!dob) {
+      setError("Please enter your date of birth");
+      return;
+    }
+    setError("");
+    onSubmit(dob);
   };
 
   return (
@@ -34,6 +42,8 @@ export default function HoroscopeForm() {
             onChange={(e) => setDob(e.target.value)}
           />
         </div>
+        {error && <p role="alert">{error}</p>}
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
