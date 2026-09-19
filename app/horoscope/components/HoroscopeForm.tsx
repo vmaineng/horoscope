@@ -2,10 +2,6 @@
 
 import { useState } from "react";
 
-type HoroscopeFormProps = {
-  onSubmit: (dob: string) => void;
-};
-
 export default function HoroscopeForm({ onSubmit }: HoroscopeFormProps) {
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
