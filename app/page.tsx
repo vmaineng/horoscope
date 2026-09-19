@@ -1,20 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import HoroscopeForm from "./horoscope/components/HoroscopeForm";
+import useHoroscope from "./hooks/useHoroscope";
+import HoroscopeOutput from "./horoscope/components/HoroscopeOutput";
 
 export default function Home() {
-  const [dob, setDob] = useState<string | null>(null);
-  const [name, setName] = useState<string | null>(null);
-
-  const handleSubmit = (info: { dob: string; name: string }) => {
-    setDob(info.dob);
-    setName(info.name);
-  };
+  const { name, horoscope, submitInfo } = useHoroscope();
 
   return (
     <div>
-      <HoroscopeForm onSubmit={handleSubmit} />
+      {!horoscope && <HoroscopeForm onSubmit={submitInfo} />}
+
+      {horoscope && name && (
+        <HoroscopeOutput
+          name={name}
+          message={horoscope.message}
+          today_date={new Date().toISOString().split("T")[0]}
+          sign={horoscope.sign}
+        />
+      )}
     </div>
   );
 }

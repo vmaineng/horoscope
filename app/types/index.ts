@@ -3,13 +3,6 @@ export type Profile = {
     dob: string;
 }
 
-export type Horoscope = { 
-    userId: string;
-    sign: string;
-    today_date: string;
-    message: string;
-}
-
 export type ZodiacSign =
   | "Aries" | "Taurus" | "Gemini" | "Cancer"
   | "Leo" | "Virgo" | "Libra" | "Scorpio"
@@ -24,3 +17,8 @@ export type HoroscopeState =
   | { status: "loading" }
   | { status: "error"; message: string }
   | { status: "success"; data: Horoscope };
+
+export type Horoscope = {
+  sign: string;
+  message: string;
+};

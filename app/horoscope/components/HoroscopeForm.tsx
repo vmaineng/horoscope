@@ -1,20 +1,49 @@
 "use client";
 
 import { useState } from "react";
+import { Profile } from "@/app/types";
+
+type HoroscopeFormProps = {
+  onSubmit: (info: Profile) => void;
+};
 
 export default function HoroscopeForm({ onSubmit }: HoroscopeFormProps) {
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
   const [error, setError] = useState("");
 
+  function validateDOB(dob: string): string | null {
+    const dobDate = new Date(dob);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (dobDate > today) {
+      return "Date of birth cannot be in the future";
+    }
+
+    const mindDate = new Date();
+    mindDate.setFullYear(mindDate.getFullYear() - 150);
+
+    if (dobDate < mindDate) {
+      return "Date of birth cannot be more than 150 years ago";
+    }
+
+    return null;
+  }
+
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!dob) {
-      setError("Please enter your date of birth");
+    if (!name || !dob) {
+      setError("Please enter your name and date of birth");
+      return;
+    }
+    const dobError = validateDOB(dob);
+    if (dobError) {
+      setError(dobError);
       return;
     }
     setError("");
-    onSubmit(dob);
+    onSubmit({ name, dob });
   };
 
   return (
@@ -39,7 +68,9 @@ export default function HoroscopeForm({ onSubmit }: HoroscopeFormProps) {
           />
         </div>
         {error && <p role="alert">{error}</p>}
-        <button type="submit">Submit</button>
+        <button className="border border-2" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
