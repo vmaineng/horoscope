@@ -2,7 +2,7 @@ import os
 from anthropic import AsyncAnthropic
 from datetime import date
 
-client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+client = AsyncAnthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 _cache: dict[tuple[str,str], str] = {}
 
