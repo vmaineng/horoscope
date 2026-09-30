@@ -1,5 +1,5 @@
 import os
-from anthropic import Anthropic
+from anthropic import AsyncAnthropic
 from datetime import date
 
 client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
