@@ -6,7 +6,7 @@ client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 _cache: dict[tuple[str,str], str] = {}
 
-def generate_horoscope(sign:str, today:date) -> str: 
+async def generate_horoscope(sign:str, today:date) -> str: 
     cache_key = (sign, today.isoformat())
     if cache_key in _cache:
         return _cache[cache_key]
@@ -17,7 +17,7 @@ def generate_horoscope(sign:str, today:date) -> str:
     f"no markdown formatting, no headers, no emoji, no asterisks."
     )
 
-    response = client.messages.create(
+    response = await client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=200,
         messages=[
