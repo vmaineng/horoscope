@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import date
 from models import HoroscopeRequest, HoroscopeResponse
@@ -33,4 +33,4 @@ async def get_horoscope(payload: HoroscopeRequest):
         return HoroscopeResponse(sign=sign, message=message)
     except Exception as e:
         print(f"Error generating horoscope: {e}")
-        return {"error": "Failed to generate horoscope"}
+        raise HTTPException(status_code=500, detail="Failed to generate horoscope")
