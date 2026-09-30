@@ -12,7 +12,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://horoscope-teal-alpha.vercel.app/", 
+    allow_origins=["https://horoscope-teal-alpha.vercel.app", 
                    "https://horoscope-l5rs.onrender.com", 
                    "http://localhost:3000"],
     allow_credentials=True,
